@@ -9,11 +9,15 @@ const server = http.createServer((req, res) => {
         'Content-Type': 'text/plain'
     });
     if (req.method === 'POST') {
-        req.on('data', chunk => {
-            map(chunk => chunk.toString().toUpperCase());
-            req.pipe(res);
-        });
+        req.pipe(map(transform))
+            .pipe(res);
+    } else {
+        req.end('need a POST request');
     }
 });
+
+function transform(chunk) {
+    return chunk.toString().toUpperCase();
+}
 
 server.listen(port);
