@@ -24,3 +24,5 @@ function end() {
     })
     this.queue(new Buffer(finalLines));
 }
+
+// SOLUTION2 - Use split module, it will buffer chunks on newlines before you get them
