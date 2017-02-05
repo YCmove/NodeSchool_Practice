@@ -1,18 +1,18 @@
 'use strict'
 
-const Emitter = require('./emitter');
-const emtr = new Emitter();
-console.log(emtr);
+const myEmitter = require('./emitter');
+const nodeEmitter = require('events');
+const eventsConfig = require('./config').events;
 
-emtr.on('jump', function () {
-    console.log('jump listener 1');
-});
-console.log(emtr);
+// const emtr = new myEmitter();
+const emtr = new nodeEmitter();
 
-emtr.on('jump', function () {
-    console.log('jump listener 2');
+emtr.on(eventsConfig.ONFILECLOSED, function () {
+    console.log('ONFILECLOSED listener 1');
 });
 
-console.log(emtr);
+emtr.on(eventsConfig.ONFILECLOSED, function () {
+    console.log('ONFILECLOSED listener 2');
+});
 
-emtr.emit('jump');
+emtr.emit(eventsConfig.ONFILECLOSED);
