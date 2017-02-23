@@ -1,5 +1,7 @@
 'use strict'
 
+// taiwan towns json api https://works.ioa.tw/weather/api/all.json
+
 const fs = require('fs');
 const csv = require('csvtojson');
 
